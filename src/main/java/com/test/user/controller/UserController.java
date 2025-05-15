@@ -19,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<ResDTO<UserResponseDto>> register(@Valid @RequestBody SignupRequestDto requestDto) {
+    public ResponseEntity<ResDTO<UserResponseDto>> signup(@Valid @RequestBody SignupRequestDto requestDto) {
 
         return new ResponseEntity<>(
                 ResDTO.<UserResponseDto>builder()
