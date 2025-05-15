@@ -8,9 +8,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,6 +27,20 @@ public class UserController {
                         .data(userService.signup(requestDto))
                         .build(),
                 HttpStatus.CREATED
+        );
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("admin/users/{username}/roles")
+    public ResponseEntity<ResDTO<UserResponseDto>> patchUserRole(@PathVariable String username) {
+
+        return new ResponseEntity<>(
+                ResDTO.<UserResponseDto>builder()
+                        .code(HttpStatus.OK.value())
+                        .message("권한 변경에 성공했습니다.")
+                        .data(userService.patchUserRole(username))
+                        .build(),
+                HttpStatus.OK
         );
     }
 }

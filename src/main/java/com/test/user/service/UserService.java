@@ -1,6 +1,7 @@
 package com.test.user.service;
 
 import com.test.user.common.exception.DuplicateResourceException;
+import com.test.user.common.exception.EntityNotFoundException;
 import com.test.user.dto.request.SignupRequestDto;
 import com.test.user.dto.response.UserResponseDto;
 import com.test.user.entity.UserEntity;
@@ -29,6 +30,17 @@ public class UserService {
         );
 
         return UserResponseDto.from(userRepository.save(user));
+    }
+
+    @Transactional
+    public UserResponseDto patchUserRole(String username) {
+
+        UserEntity user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("해당 유저를 찾을 수 없습니다."));
+
+        user.modifyUserRole();
+
+        return UserResponseDto.from(user);
     }
 
     private void validateDuplicateUsername(String username) {

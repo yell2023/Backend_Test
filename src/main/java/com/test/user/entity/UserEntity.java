@@ -36,4 +36,8 @@ public class UserEntity {
                 .role(UserRole.USER)
                 .build();
     }
+
+    public void modifyUserRole() {
+        this.role = UserRole.ADMIN;
+    }
 }
