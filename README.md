@@ -49,14 +49,17 @@ Swagger UI 배포 주소 :
 ## 설치 및 실행 방법
 
 ```bash
-# 레포지토리 클론
-git clone https://github.com/username/project.git
+# 프로젝트 클론
+git clone https://github.com/yell2023/Backend_Test.git
 
-# 의존성 설치 및 빌드 (Gradle 기준)
+# 환경 변수 설정
+-> JWT 시크릿키를 추가해주세요.
+
+# 프로젝트 빌드 
 ./gradlew build
 
-# 애플리케이션 실행
-./gradlew bootRun
+# 실행
+java -jar build/libs/UserManagementSystem-0.0.1-SNAPSHOT.jar
 ```
 ### 테스트 실행
 ```bash
