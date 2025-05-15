@@ -38,6 +38,10 @@ public class UserEntity {
     }
 
     public void modifyUserRole() {
-        this.role = UserRole.ADMIN;
+        if (this.role == UserRole.USER) {
+            this.role = UserRole.ADMIN;
+        } else {
+            this.role = UserRole.USER;
+        }
     }
 }
