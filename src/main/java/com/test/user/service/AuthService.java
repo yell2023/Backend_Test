@@ -31,6 +31,6 @@ public class AuthService {
 
         String token = jwtUtil.createToken(user.getUsername(), user.getRole());
 
-        return SigninResponseDto.from(token.substring(7));
+        return SigninResponseDto.from(token);
     }
 }
