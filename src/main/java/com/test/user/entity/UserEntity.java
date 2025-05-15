@@ -32,6 +32,7 @@ public class UserEntity {
         return UserEntity.builder()
                 .username(username)
                 .password(password)
+                .nickname(nickname)
                 .role(UserRole.USER)
                 .build();
     }
